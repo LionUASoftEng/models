@@ -37,11 +37,11 @@ public class Product {
 		return this;
 	}
 	
-	private int price;
-	public int getPrice() {
+	private double price;
+	public double getPrice() {
 		return this.price;
 	}
-	public Product setPrice(int price) {
+	public Product setPrice(double price) {
 		this.price = price;
 		return this;
 	}
@@ -55,11 +55,11 @@ public class Product {
 		return this;
 	}
 
-	private int cost;
-	public int getCost() {
+	private double cost;
+	public double getCost() {
 		return this.cost;
 	}
-	public Product setCost(int cost) {
+	public Product setCost(double cost) {
 		this.cost = cost;
 		return this;
 	}
@@ -118,11 +118,11 @@ public class Product {
 		return this;
 	}
 
-	private int MSRP;
-	public int getMSRP() {
+	private double MSRP;
+	public double getMSRP() {
 		return this.MSRP;
 	}
-	public Product setMSRP(int MSRP) {
+	public Product setMSRP(double MSRP) {
 		this.MSRP = MSRP;
 		return this;
 	}
@@ -163,16 +163,16 @@ public class Product {
 	public Product() {
 		this.id = new UUID(0, 0);
 		this.itemLookupCode = "";
-		this.price = -1;
+		this.price = -1.00;
 		this.itemType = 0;
-		this.cost = -1;
+		this.cost = -1.00;
 		this.quantity = -1;
 		this.reorderPoint = -1;
 		this.restockLevel = -1;
 		this.parentItem = UUID.fromString("");
 		this.extendedDescription = "";
 		this.inactive = false;
-		this.MSRP = -1;		
+		this.MSRP = -1.00;		
 		this.dateCreated = LocalDateTime.now();
 		this.apiRequestMessage = StringUtils.EMPTY;
 		this.apiRequestStatus = ProductApiRequestStatus.OK;

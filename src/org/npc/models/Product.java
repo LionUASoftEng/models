@@ -73,11 +73,11 @@ public class Product extends BaseModel<Product> {
 		return this;
 	}
 
-	private int price;
-	public int getPrice() {
+	private double price;
+	public double getPrice() {
 		return this.price;
 	}
-	public Product setPrice(int price) {
+	public Product setPrice(double price) {
 		if (this.price != price) {
 			this.price = price;
 			this.propertyChanged(ProductFieldNames.PRICE);
@@ -99,11 +99,11 @@ public class Product extends BaseModel<Product> {
 		return this;
 	}
 
-	private int cost;
-	public int getCost() {
+	private double cost;
+	public double getCost() {
 		return this.cost;
 	}
-	public Product setCost(int cost) {
+	public Product setCost(double cost) {
 		if (this.cost != cost) {
 			this.cost = cost;
 			this.propertyChanged(ProductFieldNames.COST);
@@ -190,11 +190,11 @@ public class Product extends BaseModel<Product> {
 		return this;
 	}
 
-	private int MSRP;
-	public int getMSRP() {
+	private double MSRP;
+	public double getMSRP() {
 		return this.MSRP;
 	}
-	public Product setMSRP(int MSRP) {
+	public Product setMSRP(double MSRP) {
 		if (this.MSRP != MSRP) {
 			this.MSRP = MSRP;
 			this.propertyChanged(ProductFieldNames.MSRP);
@@ -233,16 +233,16 @@ public class Product extends BaseModel<Product> {
 		
 		this.description = StringUtils.EMPTY;
 		this.itemLookupCode = StringUtils.EMPTY;
-		this.price = -1;
+		this.price = -1.00;
 		this.itemType = 0;
-		this.cost = -1;
+		this.cost = -1.00;
 		this.quantity = -1;
 		this.reorderPoint = 0;
 		this.restockLevel = 0;
 		//this.parentItem = = UUID.fromString("");
 		this.extendedDescription = StringUtils.EMPTY;
 		this.inactive = false;
-		this.MSRP = -1;
+		this.MSRP = -1.00;
 		this.dateCreated = LocalDateTime.now();
 	}
 
@@ -251,16 +251,16 @@ public class Product extends BaseModel<Product> {
 		
 		this.description = StringUtils.EMPTY;
 		this.itemLookupCode = StringUtils.EMPTY;
-		this.price = -1;
+		this.price = -1.00;
 		this.itemType = 0;
-		this.cost = -1;
+		this.cost = -1.00;
 		this.quantity = -1;
 		this.reorderPoint = 0;
 		this.restockLevel = 0;
 		this.parentItem = UUID.fromString("");
 		this.extendedDescription = StringUtils.EMPTY;
 		this.inactive = false;
-		this.MSRP = -1;
+		this.MSRP = -1.00;
 		this.dateCreated = LocalDateTime.now();
 	}
 
