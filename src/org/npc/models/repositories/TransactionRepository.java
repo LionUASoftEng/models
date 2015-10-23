@@ -2,6 +2,8 @@ package org.npc.models.repositories;
 
 
 import java.sql.SQLException;
+import java.util.UUID;
+
 import org.npc.dataaccess.repository.BaseRepository;
 import org.npc.dataaccess.repository.DatabaseTable;
 import org.npc.dataaccess.repository.helpers.PostgreFunctionType;
@@ -14,13 +16,14 @@ import org.npc.models.fieldnames.TransactionFieldNames;
 import org.npc.models.repositories.interfaces.TransactionRepositoryInterface;
 
 public class TransactionRepository extends BaseRepository<Transaction> implements TransactionRepositoryInterface {
-	public Transaction byTransactionId(int transactionId) {
+	@Override
+	public Transaction byTransactionId(UUID transactionId) {
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
 					postgreFunction(PostgreFunctionType.LOWER).
 					table(this.primaryTable).
-					fieldName(TransactionFieldNames.CASHIERID).
+					fieldName(TransactionFieldNames.ID).
 					comparison(SQLComparisonType.EQUALS)
 			),
 			(ps) -> {
