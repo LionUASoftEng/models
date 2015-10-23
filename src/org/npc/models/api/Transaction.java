@@ -18,24 +18,14 @@ public class Transaction {
 		this.id = id;
 		return this;
 	}
-
-	
-	private String lookupCode;
-	public String getLookupCode() {
-		return this.lookupCode;
-	}
-	public Transaction setLookupCode(String lookupCode) {
-		this.lookupCode = lookupCode;
-		return this;
-	}
-	
 	
 	private UUID cashierid;
 	public UUID getCashierid() {
 		return cashierid;
 	}
-	public void setCashierid(UUID cashierid) {
+	public Transaction setCashierid(UUID cashierid) {
 		this.cashierid = cashierid;
+		return this;
 	}
 	
 	
@@ -43,8 +33,9 @@ public class Transaction {
 	public double getAmount(){
 		return this.amount;
 	}
-	public void setAmount(double amount){
+	public Transaction setAmount(double amount){
 		this.amount = amount;
+		return this;
 	}
 	
 	
@@ -52,8 +43,9 @@ public class Transaction {
 	public String getTransactionType(){
 		return this.transactiontype;
 	}
-	public void setTransactionType(String transactiontype){
+	public Transaction setTransactionType(String transactiontype){
 		this.transactiontype = transactiontype;
+		return this;
 	}
 	
 	
@@ -61,8 +53,9 @@ public class Transaction {
 	public UUID getParentid(){
 		return this.parentid;
 	}
-	public void setParentid(UUID parentid){
+	public Transaction setParentid(UUID parentid){
 		this.parentid = parentid;
+		return this;
 	}
 	
 	
@@ -94,8 +87,7 @@ public class Transaction {
 	public Transaction setApiRequestMessage(String apiRequestMessage) {
 		if (!StringUtils.equalsIgnoreCase(this.apiRequestMessage, apiRequestMessage)) {
 			this.apiRequestMessage = apiRequestMessage;
-		}
-		
+		}		
 		return this;
 	}
 	
@@ -103,7 +95,7 @@ public class Transaction {
 	public Transaction() {
 		this.id = new UUID(0, 0);
 		this.cashierid = UUID.fromString("");
-		this.amount = 0;
+		this.amount = 0.0000;
 		this.transactiontype = "";
 		this.parentid = UUID.fromString("");
 		this.transactiondate = LocalDateTime.now();

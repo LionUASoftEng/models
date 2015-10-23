@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
+import org.apache.commons.lang3.StringUtils;
 
 import org.npc.dataaccess.model.BaseModel;
 import org.npc.models.fieldnames.TransactionFieldNames;
@@ -16,7 +17,7 @@ public class Transaction extends BaseModel<Transaction>  {
 	@Override
 	protected void fillFromRecord(ResultSet rs) throws SQLException {
 		this.cashierid = ((UUID) rs.getObject(TransactionFieldNames.CASHIERID));
-		this.amount = rs.getInt(TransactionFieldNames.AMOUNT);
+		this.amount = rs.getDouble(TransactionFieldNames.AMOUNT);
 		this.transactiontype = rs.getString(TransactionFieldNames.TRANSACTIONTYPE);
 		this.parentid = ((UUID) rs.getObject(TransactionFieldNames.PARENTID));
 		this.transactiondate = rs.getTimestamp(TransactionFieldNames.TRANSACTIONDATE).toLocalDateTime();
@@ -31,55 +32,54 @@ public class Transaction extends BaseModel<Transaction>  {
 		record.put(TransactionFieldNames.TRANSACTIONDATE, Timestamp.valueOf(this.transactiondate));
 		return record;
 	}
-	
-	
-private UUID cashierid;
+
+	private UUID cashierid;
 	public UUID getCashierid() {
 		return this.cashierid;
 	}
+	public Transaction setCashierId(UUID cashierid){
+		this.cashierid = cashierid;
+		this.propertyChanged(TransactionFieldNames.CASHIERID);
+		return this;
+	}
 
-public void setcashierid(UUID cashierid){
-	this.cashierid = cashierid;
-	
-}
-
-private double amount;
+	private double amount;
 	public double getAmount(){
 		return amount;
 	}
-	public void setAmount(double amount){
+	public Transaction setAmount(double amount){
 		this.amount = amount;	
+		this.propertyChanged(TransactionFieldNames.AMOUNT);
+		return this;
 	}
 	
-private String transactiontype;
+	private String transactiontype;
 	public String getTransactionType(){
 		return transactiontype;
 	}
-	public void SetTransactionType(String transactiontype)	{
+	public Transaction SetTransactionType(String transactiontype)	{
 		this.transactiontype = transactiontype;
 		this.propertyChanged(TransactionFieldNames.TRANSACTIONTYPE);
+		return this;
 	}	
 	
-private UUID parentid;	
+	private UUID parentid;	
 	public UUID getParentid(){
 		return this.parentid;
 	}
-	public void setParentid(UUID parentid){
+	public Transaction setParentid(UUID parentid){
 		this.parentid = parentid;
+		this.propertyChanged(TransactionFieldNames.PARENTID);
+		return this;
 	}
 
-private LocalDateTime transactiondate;
+	private LocalDateTime transactiondate;
 	public LocalDateTime getTransactionDate(){
 		return this.transactiondate;
-	}
-	// DONE IN THE CONSTRUCTOR
-	//public void setTransactionDate(LocalDateTime transactiondate){
-	//	this.transactiondate = transactiondate;
-	//}
-	
+	}	
 	
 	public org.npc.models.api.Transaction synchronize(org.npc.models.api.Transaction apiTransaction) {
-		this.setcashierid(apiTransaction.getCashierid());
+		this.setCashierId(apiTransaction.getCashierid());
 		this.setAmount(apiTransaction.getAmount());
 		this.SetTransactionType(apiTransaction.getTransactionType());
 		this.setParentid(apiTransaction.getParentid());
@@ -93,8 +93,8 @@ private LocalDateTime transactiondate;
 		super(new TransactionRepository());
 		
 		//this.cashierid = UUID.fromString("");
-		this.amount = 0;
-		this.transactiontype = "";
+		this.amount = 0.0000;
+		this.transactiontype = StringUtils.EMPTY;
 		//this.parentid = UUID.fromString("");
 		this.transactiondate = LocalDateTime.now();
 	}
@@ -103,8 +103,8 @@ private LocalDateTime transactiondate;
 	public Transaction(UUID id) {
 		super(id, new TransactionRepository());
 		this.cashierid = UUID.fromString("");
-		this.amount = 0;
-		this.transactiontype = "";
+		this.amount = 0.0000;
+		this.transactiontype = StringUtils.EMPTY;
 		this.parentid = UUID.fromString("");
 		this.transactiondate = LocalDateTime.now();
 	}

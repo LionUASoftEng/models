@@ -17,15 +17,15 @@ public class Product extends BaseModel<Product> {
 	protected void fillFromRecord(ResultSet rs) throws SQLException {
 		this.description = rs.getString(ProductFieldNames.DESCRIPTION);
 		this.itemLookupCode = rs.getString(ProductFieldNames.ITEM_LOOKUP_CODE);
-		this.price = rs.getInt(ProductFieldNames.PRICE);
-		this.cost = rs.getInt(ProductFieldNames.COST);
+		this.price = rs.getDouble(ProductFieldNames.PRICE);
+		this.cost = rs.getDouble(ProductFieldNames.COST);
 		this.quantity = rs.getInt(ProductFieldNames.QUANTITY);
 		this.reorderPoint = rs.getInt(ProductFieldNames.REORDER_POINT);
 		this.restockLevel = rs.getInt(ProductFieldNames.RESTOCK_LEVEL);
 		this.parentItem = ((UUID)rs.getObject(ProductFieldNames.PARENT_ITEM));
 		this.extendedDescription = rs.getString(ProductFieldNames.EXTENDED_DESCRIPTION);
 		this.inactive = rs.getBoolean(ProductFieldNames.INACTIVE);
-		this.MSRP = rs.getInt(ProductFieldNames.MSRP);
+		this.MSRP = rs.getDouble(ProductFieldNames.MSRP);
 		this.dateCreated = rs.getTimestamp(ProductFieldNames.DATE_CREATED).toLocalDateTime();
 	}
 
@@ -33,8 +33,9 @@ public class Product extends BaseModel<Product> {
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
 		record.put(ProductFieldNames.DESCRIPTION, this.description);
 		record.put(ProductFieldNames.ITEM_LOOKUP_CODE, this.itemLookupCode);
-		record.put(ProductFieldNames.PRICE, this.price);
+		record.put(ProductFieldNames.PRICE, this.price);	
 		record.put(ProductFieldNames.ITEM_TYPE, this.itemType);
+		record.put(ProductFieldNames.COST, this.cost);
 		record.put(ProductFieldNames.QUANTITY, this.quantity);
 		record.put(ProductFieldNames.REORDER_POINT, this.reorderPoint);
 		record.put(ProductFieldNames.RESTOCK_LEVEL, this.restockLevel);
