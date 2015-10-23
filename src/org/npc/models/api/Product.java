@@ -191,7 +191,8 @@ public class Product {
 		this.parentItem = modelProduct.getParentItem();
 		this.extendedDescription = modelProduct.getExtendedDescription();
 		this.inactive = modelProduct.getInactive();
-		this.MSRP = modelProduct.getMSRP();		
+		this.MSRP = modelProduct.getMSRP();
+		this.dateCreated = modelProduct.getDateCreated();
 
 		this.apiRequestMessage = StringUtils.EMPTY;
 		this.apiRequestStatus = ProductApiRequestStatus.OK;
