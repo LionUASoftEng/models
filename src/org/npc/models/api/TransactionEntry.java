@@ -1,71 +1,61 @@
 package org.npc.models.api;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.commons.lang3.StringUtils;
+import org.npc.models.api.TransactionEntry;
 import org.npc.models.enums.TransactionEntryApiRequestStatus;
 
 @XmlRootElement
-public class TransactionEntry 
-{
-	private UUID recordId;
-	private UUID transactionId;
-	private UUID productId;
-	private float price;
-	private int quantity;
-	private TransactionEntryApiRequestStatus apiRequestStatus;
-	private String apiRequestMessage;
+public class TransactionEntry {
 	
-	public UUID getRecordId() 
-	{
-		return this.recordId;
+	private UUID id;
+	public UUID getId() {
+		return this.id;
 	}
-	public TransactionEntry setRecordId(UUID recordId) 
-	{
-		this.recordId = recordId;
+	public TransactionEntry setId(UUID id) {
+		this.id = id;
+		return this;
+	}
+
+	private UUID transactionId;
+	public UUID getTransactionId(){
+		return this.transactionId;
+	}
+	public TransactionEntry setTransactionId(UUID transactionId){
+		this.transactionId = transactionId;
 		return this;
 	}
 	
-	public UUID getTransactionId() 
-	{
-		return this.transactionId;
-	}
-	public void setTransactionId(UUID transactionId) 
-	{
-		this.transactionId = transactionId;
-	}
-	
-	public UUID getProductId() 
-	{
+	private UUID productId;
+	public UUID getProductId(){
 		return this.productId;
 	}
-	public void setProductId(UUID productId) 
-	{
+	public TransactionEntry setProductId(UUID productId){
 		this.productId = productId;
+		return this;
 	}
-		
-	public float getPrice() 
-	{
-		return price;
+
+	private double price;
+	public double getPrice() {
+		return this.price;
 	}
-	public void setPrice(float price) 
-	{
+	public TransactionEntry setPrice(double price) {
 		this.price = price;
+		return this;
 	}
-	
-	public int getQuantity() 
-	{
-		return quantity;
+
+	private int quantity;
+	public int getQuantity() {
+		return this.quantity;
 	}
-	public void setQuantity(int quantity) 
-	{
+	public TransactionEntry setQuantity(int quantity) {
 		this.quantity = quantity;
+		return this;
 	}
-	
-	
+
+	private TransactionEntryApiRequestStatus apiRequestStatus;
 	public TransactionEntryApiRequestStatus getApiRequestStatus() {
 		return this.apiRequestStatus;
 	}
@@ -73,10 +63,11 @@ public class TransactionEntry
 		if (this.apiRequestStatus != apiRequestStatus) {
 			this.apiRequestStatus = apiRequestStatus;
 		}
-		
+			
 		return this;
 	}
-	
+
+	private String apiRequestMessage;
 	public String getApiRequestMessage() {
 		return this.apiRequestMessage;
 	}
@@ -87,23 +78,22 @@ public class TransactionEntry
 		
 		return this;
 	}
-	
+		
 	public TransactionEntry() {
-		this.recordId = new UUID(0, 0);
+		this.id = new UUID(0, 0);
 		this.transactionId = new UUID(0, 0);
 		this.productId = new UUID(0, 0);
-		this.price = 0;
-		this.quantity = 0;
-		this.apiRequestMessage = StringUtils.EMPTY;
-		this.apiRequestStatus = TransactionEntryApiRequestStatus.OK;
+		this.price = -0.9999;
+		this.quantity = -1;
 	}
-	
-	public TransactionEntry(org.npc.models.TransactionEntry modelTransactionEntry) {
-		this.recordId = modelTransactionEntry.getRecordId();
+		
+	public TransactionEntry(org.npc.models.TransactionEntry modelTransactionEntry){
+		this.id = modelTransactionEntry.getId();
 		this.transactionId = modelTransactionEntry.getTransactionId();
 		this.productId = modelTransactionEntry.getProductId();
 		this.price = modelTransactionEntry.getPrice();
 		this.quantity = modelTransactionEntry.getQuantity();
+			
 		this.apiRequestMessage = StringUtils.EMPTY;
 		this.apiRequestStatus = TransactionEntryApiRequestStatus.OK;
 	}

@@ -2,8 +2,6 @@ package org.npc.models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
 
@@ -11,111 +9,74 @@ import org.npc.dataaccess.model.BaseModel;
 import org.npc.models.fieldnames.TransactionEntryFieldNames;
 import org.npc.models.repositories.TransactionEntryRepository;
 
-public class TransactionEntry extends BaseModel<TransactionEntry>
-{
-	private UUID recordId;
-	private UUID transactionId;
-	private UUID productId;
-	private float price;
-	private int quantity;
-	
-	
+public class TransactionEntry extends BaseModel<TransactionEntry> {
 	@Override
-	protected void fillFromRecord(ResultSet rs) throws SQLException 
-	{
-		this.recordId = rs.getUUID(TransactionEntryFieldNames.RECORD_ID);
-		this.transactionId = rs.getUUID(TransactionEntryFieldNames.TRANSACTION_ID);
-		this.productId = rs.getUUID(TransactionEntryFieldNames.PRODUCT_ID);
-		this.price = rs.getFloat(TransactionEntryFieldNames.PRICE);
-		this.quantity = rs.getInteger(TransactionEntryFieldNames.QUANTITY);
+	protected void fillFromRecord(ResultSet rs) throws SQLException {
+		this.transactionId = ((UUID)rs.getObject(TransactionEntryFieldNames.TRANSACTIONID));
+		this.productId = ((UUID)rs.getObject(TransactionEntryFieldNames.PRODUCTID));
+		this.price = rs.getDouble(TransactionEntryFieldNames.PRICE);
+		this.quantity = rs.getInt(TransactionEntryFieldNames.QUANTITY);
 	}
-
-	
+		
 	@Override
-	protected Map<String, Object> fillRecord(Map<String, Object> record) 
-	{
-		record.put(TransactionEntryFieldNames.RECORD_ID, this.recordId);
-		record.put(TransactionEntryFieldNames.TRANSACTION_ID, this.transactionId);
-		record.put(TransactionEntryFieldNames.PRODUCT_ID, this.productId);
+	protected Map<String, Object> fillRecord(Map<String, Object> record) {
+		record.put(TransactionEntryFieldNames.TRANSACTIONID, this.transactionId);
+		record.put(TransactionEntryFieldNames.PRODUCTID, this.productId);
 		record.put(TransactionEntryFieldNames.PRICE, this.price);
 		record.put(TransactionEntryFieldNames.QUANTITY, this.quantity);
 		
 		return record;
 	}
 
-	public UUID getRecordId() 
-	{
-		return this.recordId;
-	}
-	public TransactionEntry setRecordId(UUID recordId) 
-	{
-		//if (!StringUtils.equals(this.firstName, firstName)) {
-			this.recordId = recordId;
-			this.propertyChanged(TransactionEntryFieldNames.RECORD_ID);
-		//}		
-		return this;
-	}
-
-	
-	public UUID getTransactionId() 
-	{
+	private UUID transactionId;
+	public UUID getTransactionId() {
 		return this.transactionId;
 	}
-	public TransactionEntry setTransactionId(UUID transactionId) 
-	{
-		//if (!StringUtils.equals(this.lastName, lastName)) {
+	public TransactionEntry setTransactionId(UUID transactionId) {
+		if( this.transactionId != transactionId){
 			this.transactionId = transactionId;
-			this.propertyChanged(TransactionEntryFieldNames.TRANSACTION_ID);
-		//}		
+			this.propertyChanged(TransactionEntryFieldNames.TRANSACTIONID);
+		}
 		return this;
 	}
-
-
-	public UUID getProductId() 
-	{
+	
+	private UUID productId;
+	public UUID getProductId(){
 		return this.productId;
 	}
-	public TransactionEntry setProductId(UUID productId) 
-	{
-		//if (!StringUtils.equals(this.employeeId, string)) {
+	public TransactionEntry setProductId(UUID productId){
+		if(this.productId != productId){
 			this.productId = productId;
-			this.propertyChanged(TransactionEntryFieldNames.PRODUCT_ID);
-		//}		
+			this.propertyChanged(TransactionEntryFieldNames.PRODUCTID);
+		}
 		return this;
 	}
 	
-	
-
-	public float getPrice() 
-	{
+	private double price;
+	public double getPrice(){
 		return this.price;
 	}
-	public TransactionEntry setPrice(float price) 
-	{
-		//if (!StringUtils.equals(this.employeeId, string)) {
-		this.price = price;
-		this.propertyChanged(TransactionEntryFieldNames.PRICE);
-		//}		
+	public TransactionEntry setPrice(double price){
+		if(this.price != price){
+			this.price = price;
+			this.propertyChanged(TransactionEntryFieldNames.PRICE);
+		}
 		return this;
 	}
 	
-
-	public int getQuantity() 
-	{
-		return this.quantity;
+	private int quantity;
+	public int getQuantity(){
+		return this.quantity;		
 	}
-	public TransactionEntry setQuantity(int quantity) 
-	{
-		//if (!StringUtils.equals(this.classification, classification)) {
+	public TransactionEntry setQuantity(int quantity){
+		if(this.quantity != quantity){
 			this.quantity = quantity;
 			this.propertyChanged(TransactionEntryFieldNames.QUANTITY);
-		//}		
+		}
 		return this;
 	}
 	
-	
-	public org.npc.models.api.TransactionEntry synchronize(org.npc.models.api.TransactionEntry apiTransactionEntry) {
-		this.setRecordId(apiTransactionEntry.getRecordId());
+	public org.npc.models.api.TransactionEntry synchronize(org.npc.models.api.TransactionEntry apiTransactionEntry){
 		this.setTransactionId(apiTransactionEntry.getTransactionId());
 		this.setProductId(apiTransactionEntry.getProductId());
 		this.setPrice(apiTransactionEntry.getPrice());
@@ -124,37 +85,21 @@ public class TransactionEntry extends BaseModel<TransactionEntry>
 		return apiTransactionEntry;
 	}
 	
-	public TransactionEntry() 
-	{
+	public TransactionEntry(){
 		super(new TransactionEntryRepository());
-
-		this.recordId = UUID.fromString("");
-		this.transactionId = UUID.fromString("");
-		this.productId = UUID.fromString("");
-		this.price = 0;
-		this.quantity = 0;
+		
+		//this.transactionId = UUID.fromString("");
+		//this.productId = UUID.fromString("");
+		this.price = -.9999;
+		this.quantity = -1;		
 	}
 	
-	public TransactionEntry(UUID id) 
-	{
+	public TransactionEntry (UUID id){
 		super(id, new TransactionEntryRepository());
-
-		this.recordId = UUID.fromString("");
+		
 		this.transactionId = UUID.fromString("");
 		this.productId = UUID.fromString("");
-		this.price = 0;
-		this.quantity = 0;
+		this.price = -.9999;
+		this.quantity = -1;
 	}
-
-	public TransactionEntry(org.npc.models.api.TransactionEntry apiTransactionEntry) 
-	{
-		super(apiTransactionEntry.getId(), new TransactionEntryRepository());
-		
-		this.recordId = apiTransactionEntry.getId();
-		this.transactionId = apiTransactionEntry.getFirstName();
-		this.productId = apiTransactionEntry.getLastName();
-		this.price = apiTransactionEntry.getTransactionEntryId();
-		this.quantity = apiTransactionEntry.getIsActive();
-
-	}	
 }
