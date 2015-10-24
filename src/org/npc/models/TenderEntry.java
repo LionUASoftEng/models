@@ -87,16 +87,24 @@ public class TenderEntry extends BaseModel<TenderEntry> {
 
 		// this.transID = UUID.fromString("");
 		this.tendertype = "";
-		//this.amount = "";	
+		this.amount = 0.00;	
 		this.createdOn = LocalDateTime.now();
 	}
 	
 	public TenderEntry(UUID id) {
 		super(id, new TenderEntryRepository());
 		
-		//this.transID = -1;
+		this.transID = UUID.fromString("");
 		this.tendertype = "";
-		//this.amount = "";
+		this.amount = 0;
 		this.createdOn = LocalDateTime.now();
+	}
+	
+	public TenderEntry(org.npc.models.api.TenderEntry apiTenderEntry){
+		super(apiTenderEntry.getId(), new TenderEntryRepository());
+		this.id = apiTenderEntry.getId();
+		this.tendertype = apiTenderEntry.gettendertype();
+		this.amount = apiTenderEntry.getamount();
+		this.createdOn = apiTenderEntry.getCreatedOn();
 	}
 }

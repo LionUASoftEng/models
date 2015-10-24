@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.commons.lang3.StringUtils;
 import org.npc.models.api.TenderEntry;
 import org.npc.models.enums.TenderEntryApiRequestStatus;
-import org.npc.models.fieldnames.TenderEntryFieldNames;
 
 @XmlRootElement
 public class TenderEntry {
@@ -81,7 +80,7 @@ public class TenderEntry {
 		this.id = new UUID(0, 0);
 		this.transID = new UUID (0,0);
 		this.tendertype = "";
-		//this.amount = "";	
+		this.amount = 0.00;	
 		this.createdOn = LocalDateTime.now();
 		this.apiRequestMessage = StringUtils.EMPTY;
 		this.apiRequestStatus = TenderEntryApiRequestStatus.OK;
@@ -91,7 +90,7 @@ public class TenderEntry {
 		this.id = new UUID(0, 0);
 		this.transID = new UUID (0,0);
 		this.tendertype = "";
-		//this.amount = "";		
+		this.amount = 0.00;		
 		this.createdOn = modelTenderEntry.getCreatedOn();
 		this.apiRequestMessage = StringUtils.EMPTY;
 		this.apiRequestStatus = TenderEntryApiRequestStatus.OK;
