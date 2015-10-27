@@ -76,6 +76,6 @@ public class TransactionEntryRepository extends BaseRepository<TransactionEntry>
 	}
 	
 	public TransactionEntryRepository() {
-		super(DatabaseTable.TRANSACTIONENTRTY);
+		super(DatabaseTable.TRANSACTION_ENTRY);
 	}
 }
