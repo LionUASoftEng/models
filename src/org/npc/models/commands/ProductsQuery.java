@@ -1,6 +1,5 @@
 package org.npc.models.commands;
 
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.npc.models.commands.interfaces.ResultCommandInterface;
