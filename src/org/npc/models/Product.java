@@ -219,7 +219,9 @@ public class Product extends BaseModel<Product> {
 		this.setQuantity(apiProduct.getQuantity());
 		this.setReorderPoint(apiProduct.getReorderPoint());
 		this.setRestockLevel(apiProduct.getRestockLevel());
-		this.setParentItem(apiProduct.getParentItem());
+		if(apiProduct.getParentItem() != null){
+			this.setParentItem(apiProduct.getParentItem());
+		}
 		this.setExtendedDescription(apiProduct.getExtendedDescription());
 		this.setInactive(apiProduct.getInactive());
 		this.setMSRP(apiProduct.getMSRP());
@@ -240,7 +242,6 @@ public class Product extends BaseModel<Product> {
 		this.quantity = -1;
 		this.reorderPoint = 0;
 		this.restockLevel = 0;
-		//this.parentItem = = UUID.fromString("");
 		this.extendedDescription = StringUtils.EMPTY;
 		this.inactive = false;
 		this.MSRP = -1.00;
@@ -258,7 +259,6 @@ public class Product extends BaseModel<Product> {
 		this.quantity = -1;
 		this.reorderPoint = 0;
 		this.restockLevel = 0;
-		this.parentItem = UUID.fromString("");
 		this.extendedDescription = StringUtils.EMPTY;
 		this.inactive = false;
 		this.MSRP = -1.00;

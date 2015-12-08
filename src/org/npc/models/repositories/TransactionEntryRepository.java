@@ -17,7 +17,6 @@ public class TransactionEntryRepository extends BaseRepository<TransactionEntry>
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
-					postgreFunction(PostgreFunctionType.LOWER).
 					table(this.primaryTable).
 					fieldName(TransactionEntryFieldNames.ID).
 					comparison(SQLComparisonType.EQUALS)
@@ -36,7 +35,6 @@ public class TransactionEntryRepository extends BaseRepository<TransactionEntry>
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
-					postgreFunction(PostgreFunctionType.LOWER).
 					table(this.primaryTable).
 					fieldName(TransactionEntryFieldNames.TRANSACTIONID).
 					comparison(SQLComparisonType.EQUALS)
@@ -55,7 +53,6 @@ public class TransactionEntryRepository extends BaseRepository<TransactionEntry>
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
-					postgreFunction(PostgreFunctionType.LOWER).
 					table(this.primaryTable).
 					fieldName(TransactionEntryFieldNames.PRODUCTID).
 					comparison(SQLComparisonType.EQUALS)

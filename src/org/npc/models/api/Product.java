@@ -169,7 +169,6 @@ public class Product {
 		this.quantity = -1;
 		this.reorderPoint = -1;
 		this.restockLevel = -1;
-		this.parentItem = UUID.fromString("");
 		this.extendedDescription = "";
 		this.inactive = false;
 		this.MSRP = -1.00;		
