@@ -3,7 +3,6 @@ package org.npc.models.repositories;
 import java.sql.SQLException;
 import org.npc.dataaccess.repository.BaseRepository;
 import org.npc.dataaccess.repository.DatabaseTable;
-import org.npc.dataaccess.repository.helpers.PostgreFunctionType;
 import org.npc.dataaccess.repository.helpers.SQLComparisonType;
 import org.npc.dataaccess.repository.helpers.where.WhereClause;
 import org.npc.dataaccess.repository.helpers.where.WhereContainer;

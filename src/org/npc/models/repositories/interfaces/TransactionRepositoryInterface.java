@@ -6,4 +6,5 @@ import java.util.UUID;
 
 public interface TransactionRepositoryInterface extends BaseRepositoryInterface<Transaction>{
 	Transaction byTransactionId(UUID transactionId);
+	Transaction byEmployeeId(UUID employeeId);
 }
